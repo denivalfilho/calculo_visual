@@ -6,3 +6,9 @@ def soma_de_riemann(f, a, b, n):
     x_ret = np.linspace(a, b - largura, n)
     area = np.sum(largura * f(x_ret))
     return area
+
+def integral_exata(f, a, b):
+    n = 100000
+    largura = (b - a) / n
+    x = np.linspace(a, b - largura, n)
+    return np.sum(largura * f(x))
