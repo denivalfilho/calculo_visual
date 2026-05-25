@@ -12,3 +12,7 @@ def integral_exata(f, a, b):
     largura = (b - a) / n
     x = np.linspace(a, b - largura, n)
     return np.sum(largura * f(x))
+
+def gerar_grafico(f, a, b, n, expressao="f(x)"):
+    x_curva = np.linspace(a, b, 300)
+    y_curva = f(x_curva)
