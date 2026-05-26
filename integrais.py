@@ -31,3 +31,7 @@ def gerar_grafico(f, a, b, n, expressao="f(x)"):
 
     ax.fill_between(x_curva, y_curva, color="skyblue", alpha=0.5,
                     label="Area exata = integral de f(x)")
+
+    ax.bar(x_ret, f(x_ret), width=largura, align="edge",
+           color="orange", edgecolor="black", alpha=0.4,
+           label=f"{n} retangulos (Soma de Riemann)")
