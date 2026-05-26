@@ -28,3 +28,6 @@ def gerar_grafico(f, a, b, n, expressao="f(x)"):
 
     ax.plot(x_curva, y_curva, color="navy", linewidth=2,
             label=f"f(x) = {expressao}")
+
+    ax.fill_between(x_curva, y_curva, color="skyblue", alpha=0.5,
+                    label="Area exata = integral de f(x)")
