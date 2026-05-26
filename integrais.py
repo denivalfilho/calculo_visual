@@ -23,3 +23,5 @@ def gerar_grafico(f, a, b, n, expressao="f(x)"):
     area_riemann = soma_de_riemann(f, a, b, n)
     area_exata = integral_exata(f, a, b)
     erro = abs(area_exata - area_riemann)
+
+    fig, ax = plt.subplots(figsize=(9, 6))
