@@ -25,3 +25,6 @@ def gerar_grafico(f, a, b, n, expressao="f(x)"):
     erro = abs(area_exata - area_riemann)
 
     fig, ax = plt.subplots(figsize=(9, 6))
+
+    ax.plot(x_curva, y_curva, color="navy", linewidth=2,
+            label=f"f(x) = {expressao}")
