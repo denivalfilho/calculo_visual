@@ -35,3 +35,9 @@ def gerar_grafico(f, a, b, n, expressao="f(x)"):
     ax.bar(x_ret, f(x_ret), width=largura, align="edge",
            color="orange", edgecolor="black", alpha=0.4,
            label=f"{n} retangulos (Soma de Riemann)")
+
+    ax.axvline(a, color="green", linestyle="--", linewidth=1)
+    ax.axvline(b, color="green", linestyle="--", linewidth=1)
+    ax.axhline(0, color="black", linewidth=0.8)
+    ax.axvline(0, color="black", linewidth=0.8)
+
