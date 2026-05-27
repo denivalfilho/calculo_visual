@@ -44,3 +44,19 @@ def gerar_grafico(f, a, b, n, expressao="f(x)"):
     ax.set_title(f"Calculo de Area por Integral  -  n = {n}", fontsize=14)
     ax.set_xlabel("eixo x")
     ax.set_ylabel("eixo y")
+
+    texto = (f"n (retangulos): {n}\n"
+             f"Area aproximada: {area_riemann:.6f}\n"
+             f"Area exata (integral): {area_exata:.6f}\n"
+             f"Erro: {erro:.6f}")
+    ax.text(0.05, 0.95, texto, transform=ax.transAxes,
+            fontsize=11, verticalalignment="top",
+            bbox=dict(boxstyle="round", facecolor="white", alpha=0.85))
+
+    ax.legend(loc="lower right")
+    ax.grid(True, linestyle=":", alpha=0.6)
+
+    plt.tight_layout()
+    plt.show()
+
+    return area_riemann, area_exata, erro
