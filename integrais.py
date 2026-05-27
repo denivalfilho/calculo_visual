@@ -41,3 +41,6 @@ def gerar_grafico(f, a, b, n, expressao="f(x)"):
     ax.axhline(0, color="black", linewidth=0.8)
     ax.axvline(0, color="black", linewidth=0.8)
 
+    ax.set_title(f"Calculo de Area por Integral  -  n = {n}", fontsize=14)
+    ax.set_xlabel("eixo x")
+    ax.set_ylabel("eixo y")
