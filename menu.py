@@ -9,3 +9,11 @@ def criar_funcao(expressao):
                                 "log": np.log, "sqrt": np.sqrt,
                                 "pi": np.pi, "e": np.e})
     return f
+
+def ler_numero(mensagem):
+    while True:
+        try:
+            return float(input(mensagem))
+        except ValueError:
+            print("  Valor invalido. Digite um numero.")
+
