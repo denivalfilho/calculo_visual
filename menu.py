@@ -17,3 +17,12 @@ def ler_numero(mensagem):
         except ValueError:
             print("  Valor invalido. Digite um numero.")
 
+def ler_inteiro_positivo(mensagem):
+    while True:
+        try:
+            valor = int(input(mensagem))
+            if valor > 0:
+                return valor
+            print("  Digite um numero inteiro maior que zero.")
+        except ValueError:
+            print("  Valor invalido. Digite um numero inteiro.")
