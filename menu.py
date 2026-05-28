@@ -70,3 +70,5 @@ def main():
             print("Encerrando. Ate a proxima!")
             break
 
+if __name__ == "__main__":
+    main()
