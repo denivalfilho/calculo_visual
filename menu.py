@@ -3,11 +3,15 @@ import integrais
 
 def criar_funcao(expressao):
     def f(x):
-        return eval(expressao, {"x": x, "np": np,
-                                "sin": np.sin, "cos": np.cos,
-                                "tan": np.tan, "exp": np.exp,
-                                "log": np.log, "sqrt": np.sqrt,
-                                "pi": np.pi, "e": np.e})
+        try:
+            return eval(expressao, {"x": x, "np": np,
+                                    "sin": np.sin, "cos": np.cos,
+                                    "tan": np.tan, "exp": np.exp,
+                                    "log": np.log, "sqrt": np.sqrt,
+                                    "pi": np.pi, "e": np.e})
+        except Exception as e:
+            print(f"\n  Erro ao avaliar a função: {e}")
+            return np.zeros_like(x) # Retorna array de zeros para não quebrar o gráfico
     return f
 
 def ler_numero(mensagem):
