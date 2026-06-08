@@ -41,10 +41,18 @@ def main():
     expressao = input("Digite a funcao f(x): ").strip()
     f = criar_funcao(expressao)
 
+    try:
+        f(1.0) 
+    except Exception as e:
+        print(f"  Aviso: A expressão digitada parece incorreta ({e}).")
+        print("  O programa pode gerar um gráfico zerado. Considere reiniciar.")
+
     a = ler_numero("Digite o limite inferior a: ")
     b = ler_numero("Digite o limite superior b: ")
 
-    if a > b:
+    if a == b:
+        print("\n  Nota: O limite inferior é igual ao superior. A área será 0.")
+    elif a > b:
         a, b = b, a
         print(f"  (limites trocados: a={a}, b={b})")
 
@@ -73,6 +81,3 @@ def main():
         if resposta != "s":
             print("Encerrando. Ate a proxima!")
             break
-
-if __name__ == "__main__":
-    main()
