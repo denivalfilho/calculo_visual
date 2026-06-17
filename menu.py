@@ -1,6 +1,7 @@
 import numpy as np
 import integrais
 
+
 def criar_funcao(expressao):
     def f(x):
         try:
@@ -10,9 +11,10 @@ def criar_funcao(expressao):
                                     "log": np.log, "sqrt": np.sqrt,
                                     "pi": np.pi, "e": np.e})
         except Exception as e:
-            print(f"\n  Erro ao avaliar a função: {e}")
-            return np.zeros_like(x) # Retorna array de zeros para não quebrar o gráfico
+            print(f"\n  Erro ao avaliar a funcao: {e}")
+            return np.zeros_like(x)
     return f
+
 
 def ler_numero(mensagem):
     while True:
@@ -20,6 +22,7 @@ def ler_numero(mensagem):
             return float(input(mensagem))
         except ValueError:
             print("  Valor invalido. Digite um numero.")
+
 
 def ler_inteiro_positivo(mensagem):
     while True:
@@ -30,6 +33,7 @@ def ler_inteiro_positivo(mensagem):
             print("  Digite um numero inteiro maior que zero.")
         except ValueError:
             print("  Valor invalido. Digite um numero inteiro.")
+
 
 def main():
     print("=" * 50)
@@ -42,19 +46,19 @@ def main():
     f = criar_funcao(expressao)
 
     try:
-        f(1.0) 
+        f(1.0)
     except Exception as e:
-        print(f"  Aviso: A expressão digitada parece incorreta ({e}).")
-        print("  O programa pode gerar um gráfico zerado. Considere reiniciar.")
+        print(f"  Aviso: a expressao parece incorreta ({e}).")
+        print("  O programa pode gerar um grafico zerado. Considere reiniciar.")
 
     a = ler_numero("Digite o limite inferior a: ")
     b = ler_numero("Digite o limite superior b: ")
 
     if a == b:
-        print("\n  Nota: O limite inferior é igual ao superior. A área será 0.")
+        print("\n  Nota: o limite inferior e igual ao superior. A area sera 0.")
     elif a > b:
         a, b = b, a
-        print(f"  (limites trocados: a={a}, b={b})")
+        print(f"  (limites trocados: a = {a}, b = {b})")
 
     print()
     print("Agora vamos gerar os graficos variando o n.")
@@ -81,3 +85,7 @@ def main():
         if resposta != "s":
             print("Encerrando. Ate a proxima!")
             break
+
+
+if __name__ == "__main__":
+    main()
