@@ -61,6 +61,11 @@ def gerar_grafico(f, a, b, n, expressao="f(x)"):
     ax2.legend(loc="lower right")
     ax2.grid(True, linestyle=":", alpha=0.6)
 
+    y_min = min(ax1.get_ylim()[0], ax2.get_ylim()[0])
+    y_max = max(ax1.get_ylim()[1], ax2.get_ylim()[1])
+    ax1.set_ylim(y_min, y_max)
+    ax2.set_ylim(y_min, y_max)
+
     plt.tight_layout()
     plt.show()
 
