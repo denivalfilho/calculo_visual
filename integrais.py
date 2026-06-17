@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.integrate import quad
 
 def soma_de_riemann(f, a, b, n):
     largura = (b - a) / n
@@ -8,10 +9,8 @@ def soma_de_riemann(f, a, b, n):
     return area
 
 def integral_exata(f, a, b):
-    n = 100000
-    largura = (b - a) / n
-    x = np.linspace(a, b - largura, n)
-    return np.sum(largura * f(x))
+    resultado, _ = quad(f, a, b)
+    return resultado
 
 def gerar_grafico(f, a, b, n, expressao="f(x)"):
     x_curva = np.linspace(a, b, 300)
@@ -24,37 +23,43 @@ def gerar_grafico(f, a, b, n, expressao="f(x)"):
     area_exata = integral_exata(f, a, b)
     erro = abs(area_exata - area_riemann)
 
-    fig, ax = plt.subplots(figsize=(9, 6))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
 
-    ax.plot(x_curva, y_curva, color="navy", linewidth=2,
-            label=f"f(x) = {expressao}")
+    ax1.plot(x_curva, y_curva, color="navy", linewidth=2,
+             label=f"f(x) = {expressao}")
+    ax1.fill_between(x_curva, y_curva, color="skyblue", alpha=0.6,
+                     label="Area exata = integral de f(x)")
+    ax1.axvline(a, color="green", linestyle="--", linewidth=1)
+    ax1.axvline(b, color="green", linestyle="--", linewidth=1)
+    ax1.axhline(0, color="black", linewidth=0.8)
+    ax1.set_title("Area exata (integral)", fontsize=13)
+    ax1.set_xlabel("eixo x")
+    ax1.set_ylabel("eixo y")
+    ax1.text(0.05, 0.95, f"Area exata: {area_exata:.6f}",
+             transform=ax1.transAxes, fontsize=11, verticalalignment="top",
+             bbox=dict(boxstyle="round", facecolor="white", alpha=0.85))
+    ax1.legend(loc="lower right")
+    ax1.grid(True, linestyle=":", alpha=0.6)
 
-    ax.fill_between(x_curva, y_curva, color="skyblue", alpha=0.5,
-                    label="Area exata = integral de f(x)")
-
-    ax.bar(x_ret, f(x_ret), width=largura, align="edge",
-           color="orange", edgecolor="black", alpha=0.4,
-           label=f"{n} retangulos (Soma de Riemann)")
-
-    ax.axvline(a, color="green", linestyle="--", linewidth=1)
-    ax.axvline(b, color="green", linestyle="--", linewidth=1)
-    ax.axhline(0, color="black", linewidth=0.8)
-    ax.axvline(0, color="black", linewidth=0.8)
-
-    ax.set_title(f"Calculo de Area por Integral  -  n = {n}", fontsize=14)
-    ax.set_xlabel("eixo x")
-    ax.set_ylabel("eixo y")
-
+    ax2.plot(x_curva, y_curva, color="navy", linewidth=2,
+             label=f"f(x) = {expressao}")
+    ax2.bar(x_ret, f(x_ret), width=largura, align="edge",
+            color="orange", edgecolor="black", alpha=0.5,
+            label=f"{n} retangulos (Soma de Riemann)")
+    ax2.axvline(a, color="green", linestyle="--", linewidth=1)
+    ax2.axvline(b, color="green", linestyle="--", linewidth=1)
+    ax2.axhline(0, color="black", linewidth=0.8)
+    ax2.set_title(f"Aproximacao por Soma de Riemann  -  n = {n}", fontsize=13)
+    ax2.set_xlabel("eixo x")
+    ax2.set_ylabel("eixo y")
     texto = (f"n (retangulos): {n}\n"
              f"Area aproximada: {area_riemann:.6f}\n"
-             f"Area exata (integral): {area_exata:.6f}\n"
              f"Erro: {erro:.6f}")
-    ax.text(0.05, 0.95, texto, transform=ax.transAxes,
-            fontsize=11, verticalalignment="top",
-            bbox=dict(boxstyle="round", facecolor="white", alpha=0.85))
-
-    ax.legend(loc="lower right")
-    ax.grid(True, linestyle=":", alpha=0.6)
+    ax2.text(0.05, 0.95, texto, transform=ax2.transAxes,
+             fontsize=11, verticalalignment="top",
+             bbox=dict(boxstyle="round", facecolor="white", alpha=0.85))
+    ax2.legend(loc="lower right")
+    ax2.grid(True, linestyle=":", alpha=0.6)
 
     plt.tight_layout()
     plt.show()

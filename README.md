@@ -5,7 +5,7 @@ Aplicação didática que mostra visualmente o conceito de área sob uma curva u
 ## Como usar
 
 ```bash
-pip install numpy matplotlib
+pip install numpy matplotlib scipy
 python menu.py
 ```
 
