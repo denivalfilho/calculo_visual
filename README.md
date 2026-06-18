@@ -26,3 +26,4 @@ x**3 - 2*x
 |---|---|
 | `integrais.py` | Cálculo da Soma de Riemann e geração do gráfico |
 | `menu.py` | Interface no terminal |
+| `matplotlib_funcoes.pdf` | Resumo das funções da Matplotlib usadas no projeto |
